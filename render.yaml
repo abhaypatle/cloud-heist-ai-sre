@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cloud-heist-ai-sre
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit

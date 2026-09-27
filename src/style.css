@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(circle at 50% 0%, #153952 0%, #0d2235 45%, #081624 100%);
+  color: #f1f8fc;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  perspective: 1200px;
+}
+
+/* ========================================================
+   1. COSMIC 3D GRID FLOOR (CLEAN ICE BLUE / CYAN)
+   ======================================================== */
+.cosmic-grid-floor {
+  position: fixed;
+  inset: -60% -60% 0 -60%;
+  height: 220%;
+  background-image: 
+    linear-gradient(rgba(56, 225, 244, 0.28) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(56, 225, 244, 0.28) 1.5px, transparent 1.5px);
+  background-size: 50px 50px;
+  transform: rotateX(70deg) translateZ(-100px);
+  transform-origin: center 80%;
+  animation: cosmicGridFlow 12s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 80%);
+}
+
+@keyframes cosmicGridFlow {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 600px; }
+}
+
+/* ========================================================
+   2. CRT SCANLINE BEAM (NON-BLOCKING)
+   ======================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(56, 225, 244, 0.03) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 998;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(56, 225, 244, 0.1) 50%, transparent 100%);
+  animation: scanlineSweep 7s linear infinite;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes scanlineSweep {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(200%); }
+}
+
+/* ========================================================
+   3. FROSTED GLASS PANELS WITH SPECULAR SHIMMER
+   ======================================================== */
+.cyber-panel-4d, .panel-box {
+  position: relative;
+  background: rgba(14, 38, 56, 0.75) !important;
+  border: 1px solid rgba(56, 225, 244, 0.45) !important;
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 45px rgba(4, 15, 26, 0.45), 
+    0 0 35px rgba(56, 225, 244, 0.15),
+    inset 0 0 25px rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cyber-panel-4d::before, .panel-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(56, 225, 244, 0.2) 55%,
+    transparent 100%
+  );
+  animation: holoPrismShimmer 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes holoPrismShimmer {
+  0% { left: -150%; }
+  35%, 100% { left: 150%; }
+}
+
+/* ========================================================
+   4. NEON ELECTRIC TEXT & GLOW
+   ======================================================== */
+.neon-pulse-text, .hero-title em {
+  color: #38e1f4 !important;
+  text-shadow: 
+    0 0 12px rgba(56, 225, 244, 0.9),
+    0 0 28px rgba(56, 225, 244, 0.65),
+    0 0 50px rgba(56, 225, 244, 0.4) !important;
+  animation: neonElectricPulse 3.5s infinite alternate ease-in-out;
+}
+
+@keyframes neonElectricPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 12px rgba(56, 225, 244, 0.9),
+      0 0 28px rgba(56, 225, 244, 0.65),
+      0 0 50px rgba(56, 225, 244, 0.4);
+    opacity: 1;
+  }
+  75% { opacity: 0.96; }
+  80% { opacity: 1; }
+  92% { opacity: 0.94; }
+}
+
+/* Orbit Gyroscope (Frosted Azure Ring) */
+.orbit-4d, .orbit-box {
+  width: 310px;
+  height: 310px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  animation: floatOrb 5s ease-in-out infinite;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0px) rotateX(12deg) rotateY(15deg); }
+  50% { transform: translateY(-14px) rotateX(-8deg) rotateY(-12deg); }
+}
+
+.gyro-ring, .ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #38e1f4;
+  box-shadow: 0 0 22px rgba(56, 225, 244, 0.8), inset 0 0 16px rgba(56, 225, 244, 0.5);
+}
+.ring-1, .gyro-1 { width: 260px; height: 115px; animation: spinX 8s linear infinite; }
+.ring-2, .gyro-2 { width: 260px; height: 115px; border-color: #a78bfa; box-shadow: 0 0 22px rgba(167, 139, 250, 0.8); animation: spinY 11s linear infinite reverse; }
+.ring-3, .gyro-3 { width: 260px; height: 115px; border-color: #34d399; box-shadow: 0 0 22px rgba(52, 211, 153, 0.8); animation: spinZ 13s linear infinite; }
+
+@keyframes spinX { 0% { transform: rotateX(70deg) rotateZ(0deg); } 100% { transform: rotateX(70deg) rotateZ(360deg); } }
+@keyframes spinY { 0% { transform: rotateY(70deg) rotateZ(0deg); } 100% { transform: rotateY(70deg) rotateZ(360deg); } }
+@keyframes spinZ { 0% { transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg); } 100% { transform: rotateX(45deg) rotateY(45deg) rotateZ(360deg); } }
+
+.ops-pill, .core-ops {
+  background: #11415e;
+  border: 1.5px solid #38e1f4;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: #ffffff;
+  box-shadow: 0 0 35px rgba(56, 225, 244, 1);
+  z-index: 10;
+}
+
+/* Battle Tiles */
+.battle-card-4d, .battle-tile {
+  background: rgba(16, 44, 66, 0.7) !important;
+  border: 1px solid rgba(56, 225, 244, 0.35) !important;
+  border-radius: 8px;
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.battle-card-4d:hover, .battle-tile:hover {
+  background: rgba(22, 60, 90, 0.85) !important;
+  border-color: #38e1f4 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(4, 15, 26, 0.5), 0 0 20px rgba(56, 225, 244, 0.4);
+}
+.battle-card-4d.active, .battle-tile.active {
+  background: rgba(22, 68, 102, 0.95) !important;
+  border-color: #38e1f4 !important;
+  box-shadow: inset 0 0 25px rgba(56, 225, 244, 0.3), 0 0 25px rgba(56, 225, 244, 0.5);
+}
+
+/* Glow Action Button */
+.btn-create, .glow-btn-4d {
+  background: linear-gradient(135deg, #38e1f4 0%, #0284c7 100%) !important;
+  color: #041726 !important;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(56, 225, 244, 0.65), inset 0 0 12px rgba(255, 255, 255, 0.5) !important;
+  transition: all 0.2s ease;
+}
+.btn-create:hover, .glow-btn-4d:hover {
+  box-shadow: 0 0 40px rgba(56, 225, 244, 0.95), inset 0 0 16px rgba(255, 255, 255, 0.8) !important;
+  transform: translateY(-1px);
+}
+
+.handle-input, .code-input {
+  background: rgba(9, 27, 41, 0.85) !important;
+  border: 1px solid rgba(56, 225, 244, 0.35) !important;
+  color: #f1f8fc !important;
+}
+
+/* Stepper Nodes */
+.step-node-4d, .step-item {
+  background: rgba(14, 38, 56, 0.75) !important;
+  border: 1px solid rgba(56, 225, 244, 0.35) !important;
+}
+.step-node-4d.current, .step-item.active {
+  background: rgba(90, 24, 38, 0.85) !important;
+  border-color: #f43f5e !important;
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.6) !important;
+}
+.step-node-4d.done, .step-item.done {
+  background: rgba(12, 60, 46, 0.85) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 22px rgba(52, 211, 153, 0.5) !important;
+}

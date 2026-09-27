@@ -1,0 +1,31 @@
+﻿{
+    "name":  "cloud-heist",
+    "private":  true,
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "concurrently \"vite\" \"node server/index.cjs\"",
+                    "build":  "vite build",
+                    "server":  "node server/index.cjs",
+                    "test":  "vitest run"
+                },
+    "dependencies":  {
+                         "@vitejs/plugin-react":  "latest",
+                         "concurrently":  "latest",
+                         "express":  "latest",
+                         "react":  "latest",
+                         "react-dom":  "latest",
+                         "socket.io":  "latest",
+                         "socket.io-client":  "latest",
+                         "tsx":  "latest",
+                         "typescript":  "latest",
+                         "vite":  "latest",
+                         "vitest":  "latest",
+                         "tailwindcss":  "latest",
+                         "postcss":  "latest",
+                         "autoprefixer":  "latest",
+                         "lucide-react":  "latest"
+                     },
+    "devDependencies":  {
+
+                        }
+}
