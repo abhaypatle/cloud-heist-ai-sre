@@ -1,31 +1,25 @@
-﻿{
-    "name":  "cloud-heist",
-    "private":  true,
-    "type":  "module",
-    "scripts":  {
-                    "dev":  "concurrently \"vite\" \"node server/index.cjs\"",
-                    "build":  "vite build",
-                    "server":  "node server/index.cjs",
-                    "test":  "vitest run"
-                },
-    "dependencies":  {
-                         "@vitejs/plugin-react":  "latest",
-                         "concurrently":  "latest",
-                         "express":  "latest",
-                         "react":  "latest",
-                         "react-dom":  "latest",
-                         "socket.io":  "latest",
-                         "socket.io-client":  "latest",
-                         "tsx":  "latest",
-                         "typescript":  "latest",
-                         "vite":  "latest",
-                         "vitest":  "latest",
-                         "tailwindcss":  "latest",
-                         "postcss":  "latest",
-                         "autoprefixer":  "latest",
-                         "lucide-react":  "latest"
-                     },
-    "devDependencies":  {
-
-                        }
+{
+  "name": "cloud-heist",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"node server/index.cjs\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server/index.cjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "vite": "^8.3.0"
+  }
 }
